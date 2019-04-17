@@ -18,6 +18,3 @@ def cat_by_breed(breed=''):
     request = requests.get('https://api.thecatapi.com/v1/images/search?breed_ids=' + str(breed)).json()
     pic_url = request[0]['url']
     return pic_url
-
-
-breeds = get_breeds_list()
