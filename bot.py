@@ -44,8 +44,8 @@ def cat_callback(update, context):
 if __name__ == '__main__':
 
     TOKEN = os.environ['TG_TOKEN']
-    NAME = 'cats-bot'
-    PORT = ''
+    NAME = 'cats-tg-bot'
+    PORT = os.environ.get('PORT')
 
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         level=logging.INFO)
@@ -58,5 +58,8 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('help', help_callback))
     dispatcher.add_handler(CommandHandler('cat', cat_callback))
 
-    updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=TOKEN)
+    updater.bot.setWebhook(f"https://{NAME}.herokuapp.com/{TOKEN}")
     updater.idle()
