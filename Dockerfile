@@ -1,4 +1,4 @@
-FROM cats:0.3
+FROM kooskoo/cats:0.4
 
 WORKDIR /cats
 
